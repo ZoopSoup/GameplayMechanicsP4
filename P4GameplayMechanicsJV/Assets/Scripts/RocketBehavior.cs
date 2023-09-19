@@ -16,18 +16,12 @@ public class RocketBehavior : MonoBehaviour
     {
       if(homing && target != null)
       {
-        Vector3 moveDirection = (target.transform.position - target.transform.position).normalized;
+            Vector3 moveDirection = (target.transform.position - target.transform.position).normalized;
             transform.position += moveDirection * speed * Time.deltaTime;
             transform.LookAt(target);
       }
     }
 
-    public void Fire(Transform newTarget)
-    {
-        target = newTarget;
-        homing = true;
-        Destroy(gameObject, aliveTimer);
-    }
     private void OnCollisionEnter(Collision col)
     {
         if (target != null)
@@ -40,5 +34,12 @@ public class RocketBehavior : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    public void Fire(Transform newTarget)
+    {
+        target = newTarget;
+        homing = true;
+        Destroy(gameObject, aliveTimer);
     }
 }
